@@ -1,9 +1,18 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  local-db:
+    image: postgres:latest
+    container_name: local-db
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - POSTGRES_PASSWORD=local-db
     ports:
-      - '5432'
+      - "5433:5432"
+
+
+
+  prod-db:
+    image: postgres:latest
+    container_name: prod-db
+    environment:
+      - POSTGRES_PASSWORD=prod-db
+    ports:
+      - "5435:5432"
