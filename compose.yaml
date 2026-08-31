@@ -8,7 +8,6 @@ services:
       - "5433:5432"
 
 
-
   prod-db:
     image: postgres:latest
     container_name: prod-db
@@ -16,3 +15,13 @@ services:
       - POSTGRES_PASSWORD=prod-db
     ports:
       - "5435:5432"
+
+    
+  ihm-db:
+    image: adminer:4.8.1-standalone
+    container_name: ihm-db
+    ports:
+      - "5436:8080"
+    depends_on:
+      - prod-db
+      - local-db
